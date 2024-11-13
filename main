@@ -1,0 +1,16 @@
+% This code solves -r = dc/dt = kc^n in a batch reactor
+clc;
+close all;
+c0 = 2;
+tspan = linspace(0, 5, 500);
+[t, c] = ode45(@batchreactorfun, tspan, c0);
+%% Plotting of results
+plot(t, c);
+xlabel('time [s]');
+ylabel('concentration [mol/m^3]');
+%% Solution Block
+function dcdt = batchreactorfun(~, c)
+n = 2;
+k = 2;
+dcdt = -k*c^n;
+end
